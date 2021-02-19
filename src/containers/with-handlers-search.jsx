@@ -3,18 +3,19 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {ActionCreator} from '../reducer/reducer';
 
-const withHandlersAddTask = (Component) => {
+const withHandlerSearch = (Component) => {
   const WrappedComponent = (props) => {
     return <Component {...props} />;
   };
 
   const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({
-      addTask: ActionCreator.addTask,
+      setSearchKeyword: ActionCreator.setSearchKeyword,
+      setFilter: ActionCreator.setFilter
     }, dispatch);
   };
 
   return connect(null, mapDispatchToProps)(WrappedComponent);
 };
 
-export default withHandlersAddTask;
+export default withHandlerSearch;

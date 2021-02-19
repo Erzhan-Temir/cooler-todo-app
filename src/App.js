@@ -8,12 +8,16 @@ import TaskList from './components/task-list/task-list';
 import AddTask from './components/add-task/add-task';
 import withLoading from './containers/with-loading';
 import withHandlersAddTask from './containers/with-handlers-add-task';
+import withHandlersSearch from './containers/with-handlers-search';
+import withEmptyList from './containers/with-empty-list';
 
 const TaskListWrapped = compose(
     withReduxConnect,
-    withLoading
+    withLoading,
+    withEmptyList
 )(TaskList);
 
+const SearchWrapped = withHandlersSearch(Search);
 const AddTaskWrapped = withHandlersAddTask(AddTask);
 
 function App() {
@@ -21,7 +25,7 @@ function App() {
     <div className="container min-h-screen py-36 mx-auto font-sans bg-gray-300">
       <Header />
       <main>
-        <Search />
+        <SearchWrapped />
 
         <TaskListWrapped />
 

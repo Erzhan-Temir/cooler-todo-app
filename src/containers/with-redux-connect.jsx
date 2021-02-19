@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {fetchTasks} from '../reducer/reducer';
+import filterSelector from '../selectors/selectors';
 
 const withReduxConnect = (Component) => {
   const WrappedComponent = (props) => {
@@ -16,9 +17,9 @@ const withReduxConnect = (Component) => {
 };
 
 const mapStateToProps = (state) => {
-  const {tasks, loading} = state;
+  const {loading} = state;
   return {
-    tasks,
+    tasks: filterSelector(state),
     loading,
   };
 };

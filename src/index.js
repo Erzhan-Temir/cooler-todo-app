@@ -9,6 +9,8 @@ import thunk from 'redux-thunk';
 const initialState = {
   tasks: [],
   loading: true,
+  searchKeyword: ``,
+  filter: `All`,
 };
 
 const store = createStore(reducer, initialState, applyMiddleware(thunk));

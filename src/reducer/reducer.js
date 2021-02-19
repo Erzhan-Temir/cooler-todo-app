@@ -75,6 +75,14 @@ export const reducer = (state = {}, action) => {
         tasks: newTasksArr,
       });
     }
+    case `SET_SEARCH_KEYWORD`:
+      return Object.assign({}, state, {
+        searchKeyword: action.payload
+      });
+    case `SET_FILTER`:
+      return Object.assign({}, state, {
+        filter: action.payload
+      });
   }
 
   return state;
@@ -133,6 +141,18 @@ export const ActionCreator = {
     return {
       type: `ADD_TASK`,
       payload: text,
+    };
+  },
+  setSearchKeyword: (text) => {
+    return {
+      type: `SET_SEARCH_KEYWORD`,
+      payload: text
+    };
+  },
+  setFilter: (filter) => {
+    return {
+      type: `SET_FILTER`,
+      payload: filter
     };
   }
 };
