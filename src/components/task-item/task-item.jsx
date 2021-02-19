@@ -43,7 +43,7 @@ const TaskItem = (props) => {
 
 TaskItem.propTypes = {
   taskData: PropTypes.shape({
-    id: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
     text: PropTypes.string.isRequired,
     isDone: PropTypes.bool.isRequired,
     isMarked: PropTypes.bool.isRequired,

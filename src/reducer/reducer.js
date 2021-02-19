@@ -60,7 +60,21 @@ export const reducer = (state = {}, action) => {
         tasks: tasksCopy,
       });
     } // refactor
+    case `ADD_TASK`: {
+      const newTask = {
+        id: state.tasks.length + 1,
+        text: action.payload,
+        isMarked: false,
+        isDone: false,
+        isEditing: false,
+      };
 
+      const newTasksArr = state.tasks.slice();
+      newTasksArr.push(newTask);
+      return Object.assign({}, state, {
+        tasks: newTasksArr,
+      });
+    }
   }
 
   return state;
@@ -113,6 +127,12 @@ export const ActionCreator = {
         id,
         text: newText,
       }
+    };
+  },
+  addTask: (text) => {
+    return {
+      type: `ADD_TASK`,
+      payload: text,
     };
   }
 };

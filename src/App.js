@@ -7,11 +7,14 @@ import withReduxConnect from './containers/with-redux-connect';
 import TaskList from './components/task-list/task-list';
 import AddTask from './components/add-task/add-task';
 import withLoading from './containers/with-loading';
+import withHandlersAddTask from './containers/with-handlers-add-task';
 
 const TaskListWrapped = compose(
     withReduxConnect,
     withLoading
 )(TaskList);
+
+const AddTaskWrapped = withHandlersAddTask(AddTask);
 
 function App() {
   return (
@@ -22,7 +25,7 @@ function App() {
 
         <TaskListWrapped />
 
-        <AddTask />
+        <AddTaskWrapped />
       </main>
     </div>
   );

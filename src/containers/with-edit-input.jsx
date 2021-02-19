@@ -50,7 +50,7 @@ const witchEditInput = (Component) => {
 
       WrappedComponent.propTypes = {
         taskData: PropTypes.shape({
-          id: PropTypes.string.isRequired,
+          id: PropTypes.number.isRequired,
           isEditing: PropTypes.bool.isRequired,
           text: PropTypes.string.isRequired,
         }),
