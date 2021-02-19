@@ -17,19 +17,22 @@ const getUpdatedTasks = (id, state, controlType) => {
 
 export const reducer = (state = {}, action) => {
   switch (action.type) {
-    case `FETCH_TASKS_REQUEST`:
+    case `FETCH_TASKS_REQUEST`: {
       return Object.assign({}, state, {
         tasks: action.payload,
         loading: false,
       });
-    case `TOGGLE_MARKED_FLAG`:
+    }
+    case `TOGGLE_MARKED_FLAG`: {
       return Object.assign({}, state, {
         tasks: getUpdatedTasks(action.payload.id, state, action.payload.controlType),
       });
-    case `TOGGLE_DONE_FLAG`:
+    }
+    case `TOGGLE_DONE_FLAG`: {
       return Object.assign({}, state, {
         tasks: getUpdatedTasks(action.payload.id, state, action.payload.controlType),
       });
+    }
     case `DELETE_TASK`: {
       const id = action.payload;
       const indexOfTaskToDelete = state.tasks.findIndex((item) => item.id === id);
@@ -39,10 +42,11 @@ export const reducer = (state = {}, action) => {
         tasks: tasksCopy,
       });
     }
-    case `EDIT_TASK`:
+    case `EDIT_TASK`: {
       return Object.assign({}, state, {
         tasks: getUpdatedTasks(action.payload.id, state, action.payload.controlType),
       });
+    }
     case `EDIT_TASK_SAVE`: {
       const taskId = action.payload.id;
       const task = state.tasks.find((item) => item.id === taskId);
@@ -59,7 +63,7 @@ export const reducer = (state = {}, action) => {
       return Object.assign({}, state, {
         tasks: tasksCopy,
       });
-    } // refactor
+    }
     case `ADD_TASK`: {
       const newTask = {
         id: state.tasks.length + 1,
@@ -75,14 +79,16 @@ export const reducer = (state = {}, action) => {
         tasks: newTasksArr,
       });
     }
-    case `SET_SEARCH_KEYWORD`:
+    case `SET_SEARCH_KEYWORD`: {
       return Object.assign({}, state, {
         searchKeyword: action.payload
       });
-    case `SET_FILTER`:
+    }
+    case `SET_FILTER`: {
       return Object.assign({}, state, {
         filter: action.payload
       });
+    }
   }
 
   return state;
