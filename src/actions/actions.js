@@ -68,6 +68,11 @@ export const ActionCreator = {
       type: `SET_FILTER`,
       payload: filter
     };
+  },
+  catchError: () => {
+    return {
+      type: `CATCH_ERROR`,
+    };
   }
 };
 

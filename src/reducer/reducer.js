@@ -83,6 +83,11 @@ export const reducer = (state = {}, action) => {
         filter: action.payload
       });
     }
+    case `CATCH_ERROR`: {
+      return Object.assign({}, state, {
+        hasError: true,
+      });
+    }
   }
 
   return state;
