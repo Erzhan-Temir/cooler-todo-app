@@ -18,7 +18,7 @@ export default class AddTask extends PureComponent {
 
   _handleSubmit(event) {
     event.preventDefault();
-    this.props.addTask(this.state.value);
+    this.props.fetchAddTask(this.state.value);
     this.setState({
       value: ``
     });
@@ -43,5 +43,5 @@ export default class AddTask extends PureComponent {
 }
 
 AddTask.propTypes = {
-  addTask: PropTypes.func.isRequired,
+  fetchAddTask: PropTypes.func.isRequired,
 };

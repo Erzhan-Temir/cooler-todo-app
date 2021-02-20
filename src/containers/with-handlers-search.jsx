@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {ActionCreator} from '../reducer/reducer';
+import {ActionCreator} from '../actions/actions';
 
 const withHandlerSearch = (Component) => {
   const WrappedComponent = (props) => {

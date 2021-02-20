@@ -17,7 +17,7 @@ const witchEditInput = (Component) => {
     }
 
     render() {
-      const {taskData: {id, isEditing}, editTaskSave} = this.props;
+      const {taskData, taskData: {isEditing}, fetchPatchTask} = this.props;
 
       if (isEditing) {
         return (
@@ -26,7 +26,9 @@ const witchEditInput = (Component) => {
               className="flex align-center"
               onSubmit={(evt) => {
                 evt.preventDefault();
-                editTaskSave(id, this.state.value);
+                fetchPatchTask(Object.assign({}, taskData, {
+                  text: this.state.value
+                }));
               }}
             >
               <input
@@ -50,11 +52,11 @@ const witchEditInput = (Component) => {
 
       WrappedComponent.propTypes = {
         taskData: PropTypes.shape({
-          id: PropTypes.number.isRequired,
+          id: PropTypes.string.isRequired,
           isEditing: PropTypes.bool.isRequired,
           text: PropTypes.string.isRequired,
         }),
-        editTaskSave: PropTypes.func.isRequired,
+        fetchPatchTask: PropTypes.func.isRequired,
       };
 
       return <Component {...this.props} />;

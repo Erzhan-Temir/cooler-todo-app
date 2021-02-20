@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {fetchTasks} from '../reducer/reducer';
+import {fetchTasks} from '../actions/actions';
 import filterSelector from '../selectors/selectors';
 
 const withReduxConnect = (Component) => {

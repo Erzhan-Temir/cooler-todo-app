@@ -5,6 +5,7 @@ import Header from './components/header/header';
 import Search from './components/search/search';
 import TaskList from './components/task-list/task-list';
 import AddTask from './components/add-task/add-task';
+
 import withReduxConnect from './containers/with-redux-connect';
 import withLoading from './containers/with-loading';
 import withHandlersAddTask from './containers/with-handlers-add-task';
@@ -26,9 +27,7 @@ function App() {
       <Header />
       <main>
         <SearchWrapped />
-
         <TaskListWrapped />
-
         <AddTaskWrapped />
       </main>
     </div>

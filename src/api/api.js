@@ -1,44 +1,30 @@
-const tasks = [
-  {
-    id: 1,
-    text: `Walk the dog`,
-    isMarked: false,
-    isDone: false,
-    isEditing: false,
-  },
-  {
-    id: 2,
-    text: `Take out the trash`,
-    isMarked: true,
-    isDone: false,
-    isEditing: false,
-  },
-  {
-    id: 3,
-    text: `Work out`,
-    isMarked: false,
-    isDone: true,
-    isEditing: false,
-  },
-  {
-    id: 4,
-    text: `Be the best person in world`,
-    isMarked: true,
-    isDone: true,
-    isEditing: false,
-  }
-];
-
-// DON"T FORGET DO ADD FEATURE OF CANCELLING REQUESTS
+import axios from 'axios';
 
 const API = {
-  getTasks: () => {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(tasks);
-      }, 100);
+  base: axios.create({
+    baseURL: `api`,
+    timeout: 2000,
+    headers: {"Content-type": `application/json`}
+  }),
+  getTasks() {
+    return this.base.get(`/tasks`);
+  },
+  addTask(task) {
+    return this.base.post(`tasks`, {
+      task
     });
   },
+  deleteTask(id) {
+    return this.base.delete(`tasks/${id}`, {
+      id
+    });
+  },
+  patchTask(task) {
+    const {id} = task;
+    return this.base.patch(`tasks/${id}`, {
+      task
+    });
+  }
 };
 
 export default API;

@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {ActionCreator} from '../reducer/reducer';
+import {ActionCreator, fetchDeleteTask, fetchPatchTask} from '../actions/actions';
 
 const withHandlers = (Component) => {
   const WrappedComponent = (props) => {
-    const {toggleMarkedFlag, toggleDoneFlag, deleteTask, editTask} = props;
+    const {toggleMarkedFlag, toggleDoneFlag, editTask} = props;
 
     const handleEditClick = (evt, id) => {
       evt.preventDefault();
@@ -23,28 +23,22 @@ const withHandlers = (Component) => {
       toggleDoneFlag(id);
     };
 
-    const handleDeleteClick = (evt, id) => {
-      evt.preventDefault();
-      deleteTask(id);
-    };
-
     WrappedComponent.propTypes = {
       editTask: PropTypes.func.isRequired,
       toggleMarkedFlag: PropTypes.func.isRequired,
       toggleDoneFlag: PropTypes.func.isRequired,
-      deleteTask: PropTypes.func.isRequired,
     };
 
-    return <Component {...props} onEditClick={handleEditClick} onMarkedClick={handleMarkedClick} onDoneClick={handleDoneClick} onDeleteClick={handleDeleteClick} />;
+    return <Component {...props} onEditClick={handleEditClick} onMarkedClick={handleMarkedClick} onDoneClick={handleDoneClick} />;
   };
 
   const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({
       toggleMarkedFlag: ActionCreator.toggleMarkedFlag,
       toggleDoneFlag: ActionCreator.toggleDoneFlag,
-      deleteTask: ActionCreator.deleteTask,
       editTask: ActionCreator.editTask,
-      editTaskSave: ActionCreator.editTaskSave
+      fetchDeleteTask: fetchDeleteTask(),
+      fetchPatchTask: fetchPatchTask()
     }, dispatch);
   };
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {ActionCreator} from '../reducer/reducer';
+import {fetchAddTask} from '../actions/actions';
 
 const withHandlersAddTask = (Component) => {
   const WrappedComponent = (props) => {
@@ -10,7 +10,7 @@ const withHandlersAddTask = (Component) => {
 
   const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({
-      addTask: ActionCreator.addTask,
+      fetchAddTask: fetchAddTask()
     }, dispatch);
   };
 

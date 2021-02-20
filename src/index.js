@@ -5,6 +5,7 @@ import {Provider} from 'react-redux';
 import {createStore, applyMiddleware} from 'redux';
 import {reducer} from './reducer/reducer';
 import thunk from 'redux-thunk';
+import makeServer from './server/server';
 
 const initialState = {
   tasks: [],
@@ -14,6 +15,8 @@ const initialState = {
 };
 
 const store = createStore(reducer, initialState, applyMiddleware(thunk));
+
+makeServer();
 
 ReactDOM.render(
     <React.StrictMode>
